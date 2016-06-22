@@ -1,4 +1,3 @@
-//Liel van der Hoeven
 package bitcoin;
 
 import java.io.BufferedReader;
@@ -13,31 +12,23 @@ import java.text.DecimalFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ *
+ * @author Lielvan
+ */
 public class BitCoin 
 {
 
     public static void main(String[] args) throws IOException, JSONException 
     {
-        while(true)
-        {
-            JSONObject json = readJsonFromUrl("https://www.bitstamp.net/api/v2/ticker/btcusd/");
-            //System.out.println(json.toString());
-
-            //Parsing "last" to be 2 decimal places
-            DecimalFormat df = new DecimalFormat("#.00");
-            double last = json.getDouble("last");
-            String bitLast = df.format(last);
-            System.out.println(bitLast);
-            
-            try 
-            {
-                Thread.sleep(10000);                 //1000 milliseconds is one second.
-            } catch(InterruptedException ex) 
-            {
-                Thread.currentThread().interrupt();
-            }
-        }
-        
+        JSONObject json = readJsonFromUrl("https://www.bitstamp.net/api/v2/ticker/btcusd/");
+        System.out.println(json.toString());
+ 
+        //Parsing "last" to be 2 decimal places
+        DecimalFormat df = new DecimalFormat("#.00");
+        double last = json.getDouble("last");
+        String bitLast = df.format(last);
+        System.out.println(bitLast);
     }
     
     private static String readAll(Reader rd) throws IOException 
